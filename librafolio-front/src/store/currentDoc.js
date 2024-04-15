@@ -8,16 +8,10 @@ export const useDocumentStore = defineStore({
         currentDoc: 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf',
     }),
     actions: {
+        // Caching does not work here, reasons unknown so far. Leave as is for now.
         getDocumentByUrl(url) {
-            let result = null
-            if (this.documentCache.has(url)) {
-                result = this.documentCache.get(url)
-            } else {
-                const {doc} = useVuePdfEmbed({source: url})
-                this.documentCache.set(url, doc)
-                result = doc
-            }
-            return result
+            const {doc} = useVuePdfEmbed({source: url})
+            return doc
         },
         getCurrentDocument() {
             const url = this.currentDoc
