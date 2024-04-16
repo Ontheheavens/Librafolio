@@ -1,15 +1,15 @@
 import './assets/main.css'
 import 'mdb-vue-ui-kit/css/mdb.min.css';
+import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 
 import { createApp } from 'vue'
 import App from './App.vue'
 import VueSidebarMenu from 'vue-sidebar-menu'
-import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 import { createRouter, createWebHistory } from 'vue-router'
 import HWView from "./components/helloworld/HWView.vue";
 import Reader from "./components/Reader.vue";
 import LibraryGrid from "./components/LibraryGrid.vue";
-import {createPinia} from 'pinia'
+import { createPinia } from 'pinia'
 
 const routes = [
     { path: '/', name: 'Hello World', component: HWView },
