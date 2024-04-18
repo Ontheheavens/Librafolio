@@ -44,5 +44,8 @@ export const useDocumentStore = defineStore({
         setCurrentDoc(index) {
             this.currentDoc = index
         },
+        addDocument(newDocument) {
+            this.documents.push(newDocument);
+        },
     },
 })

@@ -1,4 +1,19 @@
 <template>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Document List</h2>
+    <MDBBtn @click="showCreateForm = true">Create Document</MDBBtn>
+
+    <MDBModal v-model="showCreateForm" title="Create Document">
+      <form @submit.prevent="createDocument(newDocument)">
+        <MDBInput label="Title" v-model="newDocument.title" required />
+        <MDBInput label="Description" v-model="newDocument.description" required />
+        <MDBInput label="Thumbnail URL" v-model="newDocument.thumbnail" required />
+        <MDBInput label="PDF Link" v-model="newDocument.pdfLink" required />
+        <MDBBtn type="submit">Create</MDBBtn>
+      </form>
+    </MDBModal>
+  </div>
+
   <MDBContainer class="my-5">
     <MDBRow :cols="['1','md-2']" class="g-4">
       <MDBCol v-for="(document, index) in documents" :key="index">
@@ -21,12 +36,37 @@
 <script setup lang="ts">
 import { useDocumentStore } from '../store/currentDoc.js';
 import { ref, onMounted } from 'vue';
-import { MDBContainer, MDBCardLink, MDBCol, MDBRow, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardImg } from "mdb-vue-ui-kit";
-
+import { MDBContainer, MDBModal, MDBInput, MDBBtn, MDBCardLink,
+  MDBCol, MDBRow, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardImg } from "mdb-vue-ui-kit";
 
 const documentStore = useDocumentStore();
 const documents = ref([]);
 const thumbnailStatus = ref([]);
+
+const showCreateForm = ref(false);
+
+const newDocument = ref({
+  title: '',
+  description: '',
+  thumbnail: '',
+  pdfLink: ''
+});
+
+const createDocument = (newDocument) => {
+  console.log('Creating document:', newDocument);
+  // Add the new document to the document list
+  documentStore.addDocument(newDocument);
+
+  newDocument.value = {
+    title: '',
+    description: '',
+    thumbnail: '',
+    pdfLink: ''
+  };
+
+  // Reset the form
+  showCreateForm.value = false;
+};
 
 onMounted(() => {
   documents.value = documentStore.documents;
