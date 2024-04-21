@@ -47,5 +47,16 @@ export const useDocumentStore = defineStore({
         addDocument(newDocument) {
             this.documents.push(newDocument);
         },
+        getDocIndex(document) {
+            return this.documents.indexOf(document);
+        },
+        removeDocumentByIndex(index) {
+            console.log("Removing document at index: " + index)
+            this.documents.splice(index, 1);
+        },
+        removeDocument(document) {
+            const index = this.getDocIndex(document);
+            this.removeDocumentByIndex(index);
+        }
     },
 })
