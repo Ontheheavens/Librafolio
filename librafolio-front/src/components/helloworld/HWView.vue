@@ -3,6 +3,7 @@
     <img alt="Vue logo" class="logo" src="../../assets/logo.svg" width="125" height="125" />
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
+      <p>{{ newMsg }}</p>
     </div>
   </header>
   <div class="readerContainer">
@@ -10,9 +11,29 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="js">
 import HelloWorld from './HelloWorld.vue'
 import TheWelcome from './TheWelcome.vue'
+import api from "../../api/backend.ts";
+import {onMounted, ref} from "vue";
+
+const newMsg = ref("PENDING");
+
+onMounted(() => {
+  // axios.get("http://localhost:8080/api/hello").then(response => {
+  //   newMsg.value = response.data.content
+  // })
+  api.hello().then(response => {
+    console.log("response")
+    console.log(response.data)
+    newMsg.value = response.data.content
+  }, error => {
+    console.log(error.toString())
+  }).catch(error => {
+    console.log(error.toString())
+  })
+})
+
 </script>
 
 <style scoped>

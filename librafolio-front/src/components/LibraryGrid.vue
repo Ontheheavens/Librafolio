@@ -4,9 +4,7 @@
       <div class="justify-content-center m-auto">
         <h2>Document List</h2>
       </div>
-
       <MDBBtn @click="showCreateForm = true">Create Document</MDBBtn>
-
       <MDBModal v-model="showCreateForm" title="Create Document">
         <MDBModalHeader>
           <MDBModalTitle id="exampleModalLabel"> Create Document </MDBModalTitle>
@@ -57,8 +55,6 @@ import { MDBContainer, MDBCardHeader, MDBCardFooter, MDBModalHeader, MDBTextarea
 
 const documentStore = useDocumentStore();
 const documents = ref([]);
-const thumbnailStatus = ref([]);
-
 const showCreateForm = ref(false);
 
 const newDocument = ref({
@@ -88,20 +84,6 @@ const createDocument = (newDocument) => {
 
 onMounted(() => {
   documents.value = documentStore.documents;
-  // Initialize thumbnail status array
-  thumbnailStatus.value = Array(documents.value.length).fill(null);
-
-  // Check thumbnail status for each document
-  documents.value.forEach((document, index) => {
-    const img = new Image();
-    img.src = document.thumbnail;
-    img.onload = () => {
-      thumbnailStatus.value[index] = 'success';
-    };
-    img.onerror = () => {
-      thumbnailStatus.value[index] = 'error';
-    };
-  });
 });
 </script>
 
