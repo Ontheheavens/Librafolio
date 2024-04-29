@@ -26,7 +26,7 @@ onMounted(() => {
   api.hello().then(response => {
     console.log("response")
     console.log(response.data)
-    newMsg.value = response.data.content
+    newMsg.value = response.data.text
   }, error => {
     console.log(error.toString())
   }).catch(error => {
