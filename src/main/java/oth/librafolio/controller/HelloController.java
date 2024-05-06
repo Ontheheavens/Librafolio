@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import oth.librafolio.model.Message;
 import oth.librafolio.repository.MessageRepository;
 
+import java.util.logging.Logger;
+
 /**
  * @author Ontheheavens
  * @since 05.12.2023
@@ -26,6 +28,7 @@ public class HelloController {
     @ResponseBody
     @GetMapping("/hello")
     public Message sayHello() {
+        Logger.getLogger("HelloController").info("Hello");
         return messageRepository.findRandomMessage();
     }
 

@@ -19,4 +19,39 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    public User() {
+
+    }
+
+    public User(String inputUsername, String inputPassword, Role inputRole) {
+        this.username = inputUsername;
+        this.password = inputPassword;
+        this.role = inputRole;
+    }
+
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String inputUsername) {
+        this.username = inputUsername;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String inputPassword) {
+        this.password = inputPassword;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role inputRole) {
+        this.role = inputRole;
+    }
+
 }
