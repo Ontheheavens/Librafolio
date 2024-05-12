@@ -4,7 +4,7 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import oth.librafolio.controller.CrptApi;
+import oth.CrptApi;
 
 import java.util.concurrent.TimeUnit;
 

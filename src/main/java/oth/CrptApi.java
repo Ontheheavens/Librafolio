@@ -1,4 +1,4 @@
-package oth.librafolio.controller;
+package oth;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
