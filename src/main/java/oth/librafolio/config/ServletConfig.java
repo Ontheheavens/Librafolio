@@ -1,5 +1,6 @@
 package oth.librafolio.config;
 
+import jakarta.servlet.Filter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 public class ServletConfig {
 
-    public final CrptApi crptApi = new CrptApi(TimeUnit.MINUTES, 10);
+    private final CrptApi crptApi = new CrptApi(TimeUnit.MINUTES, 10);
 
     @Bean
     public ServletRegistrationBean<CrptApi.CrptApiServlet> crptApiServletRegistrationBean() {
@@ -24,8 +25,8 @@ public class ServletConfig {
     }
 
     @Bean
-    public FilterRegistrationBean<CrptApi.RequestLimitFilter> myFilterRegistrationBean() {
-        FilterRegistrationBean<CrptApi.RequestLimitFilter> registrationBean = new FilterRegistrationBean<>();
+    public FilterRegistrationBean<Filter> rateLimiterFilterRegistrationBean() {
+        FilterRegistrationBean<Filter> registrationBean = new FilterRegistrationBean<>();
         registrationBean.setFilter(crptApi.getRequestFilter());
         registrationBean.addUrlPatterns(CrptApi.CRPT_API_PATH);
         registrationBean.setOrder(1);

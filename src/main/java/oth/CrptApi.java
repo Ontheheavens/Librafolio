@@ -19,6 +19,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Servlet config:
+ * <pre> {@code
  *
  *     public final CrptApi crptApi = new CrptApi(TimeUnit.MINUTES, 10);
  *
@@ -28,13 +29,14 @@ import java.util.concurrent.TimeUnit;
  *     }
  *
  *     @Bean
- *     public FilterRegistrationBean<CrptApi.RequestLimitFilter> myFilterRegistrationBean() {
- *         FilterRegistrationBean<CrptApi.RequestLimitFilter> registrationBean = new FilterRegistrationBean<>();
+ *     public FilterRegistrationBean<Filter> myFilterRegistrationBean() {
+ *         FilterRegistrationBean<Filter> registrationBean = new FilterRegistrationBean<>();
  *         registrationBean.setFilter(crptApi.getRequestFilter());
  *         registrationBean.addUrlPatterns(CrptApi.CRPT_API_PATH);
  *         registrationBean.setOrder(1);
  *         return registrationBean;
  *     }
+ * } </pre>
  *
  * @author Ontheheavens
  * @since 12.05.2024
@@ -52,7 +54,7 @@ public class CrptApi {
         this.servlet = new CrptApiServlet();
     }
 
-    public RequestLimitFilter getRequestFilter() {
+    public Filter getRequestFilter() {
         return requestFilter;
     }
 
@@ -157,8 +159,8 @@ public class CrptApi {
         ) {}
     }
 
-    @SuppressWarnings({"PublicInnerClass", "UseOfSystemOutOrSystemErr"})
-    public static class RequestLimitFilter implements Filter {
+    @SuppressWarnings({"UseOfSystemOutOrSystemErr"})
+    private static class RequestLimitFilter implements Filter {
 
         private final Semaphore requestSemaphore;
         private final ScheduledExecutorService scheduler;
