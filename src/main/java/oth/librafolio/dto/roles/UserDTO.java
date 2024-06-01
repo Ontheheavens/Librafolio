@@ -1,4 +1,4 @@
-package oth.librafolio.dto;
+package oth.librafolio.dto.roles;
 
 import jakarta.annotation.Nonnull;
 import jakarta.validation.constraints.NotEmpty;

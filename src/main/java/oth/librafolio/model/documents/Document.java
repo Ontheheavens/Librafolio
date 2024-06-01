@@ -1,6 +1,7 @@
 package oth.librafolio.model.documents;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -35,17 +36,22 @@ public class Document {
     @Setter
     private String link;
 
+    @Setter
     @ElementCollection
     private List<String> tags = new ArrayList<>();
 
     @Setter
     private String language;
 
-    public Document(String title, String description, String thumbnail, String link) {
+    @SuppressWarnings("BoundedWildcard")
+    Document(String title, String description, String thumbnail,
+             String link, String language, List<String> tags) {
         this.title = title;
         this.description = description;
         this.thumbnail = thumbnail;
         this.link = link;
+        this.language = language;
+        this.tags = tags;
     }
 
     public Document() {

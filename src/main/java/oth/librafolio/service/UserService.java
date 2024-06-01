@@ -2,8 +2,8 @@ package oth.librafolio.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import oth.librafolio.dto.LoginDTO;
-import oth.librafolio.dto.UserDTO;
+import oth.librafolio.dto.roles.LoginDTO;
+import oth.librafolio.dto.roles.UserDTO;
 import oth.librafolio.model.roles.Role;
 import oth.librafolio.model.roles.User;
 import oth.librafolio.repository.UserRepository;

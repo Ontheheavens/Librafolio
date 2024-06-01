@@ -10,7 +10,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 
-import oth.librafolio.dto.UserDTO;
+import oth.librafolio.dto.roles.UserDTO;
 import oth.librafolio.model.roles.Role;
 import oth.librafolio.model.roles.User;
 import oth.librafolio.service.UserService;

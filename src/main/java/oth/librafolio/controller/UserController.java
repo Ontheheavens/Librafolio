@@ -3,8 +3,8 @@ package oth.librafolio.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import oth.librafolio.dto.LoginDTO;
-import oth.librafolio.dto.UserDTO;
+import oth.librafolio.dto.roles.LoginDTO;
+import oth.librafolio.dto.roles.UserDTO;
 import oth.librafolio.model.roles.User;
 import oth.librafolio.service.UserService;
 
