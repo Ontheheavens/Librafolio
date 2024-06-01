@@ -1,4 +1,4 @@
-package oth.librafolio.model;
+package oth.librafolio.model.roles;
 
 import org.springframework.security.core.GrantedAuthority;
 

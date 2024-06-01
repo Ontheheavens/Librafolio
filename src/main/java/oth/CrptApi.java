@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.Semaphore;
@@ -188,6 +189,7 @@ public class CrptApi {
             long seconds = TimeUnit.MILLISECONDS.toSeconds(releaseIntervalMillis);
             String releaseInterval = "release interval: " + seconds + " seconds";
             System.out.println("Request limit set to: " + inputRequestLimit + ", " + releaseInterval);
+
             schedulePermitRelease();
         }
 
@@ -210,10 +212,11 @@ public class CrptApi {
             if (requestSemaphore.tryAcquire()) {
                 chain.doFilter(request, response);
             } else {
-                HttpServletResponse httpResponse = (HttpServletResponse) response;
-                httpResponse.setStatus(429); // Set 429 status code: Too Many Requests.
-                PrintWriter writer = httpResponse.getWriter();
-                writer.write("Too Many Requests");
+                if (response instanceof HttpServletResponse httpResponse) {
+                    httpResponse.setStatus(429); // Set 429 status code: Too Many Requests.
+                    PrintWriter writer = httpResponse.getWriter();
+                    writer.write("Too Many Requests");
+                }
             }
         }
 

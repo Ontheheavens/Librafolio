@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import oth.librafolio.dto.LoginDTO;
 import oth.librafolio.dto.UserDTO;
-import oth.librafolio.model.User;
+import oth.librafolio.model.roles.User;
 import oth.librafolio.service.UserService;
 
 /**

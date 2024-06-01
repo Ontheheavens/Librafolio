@@ -3,7 +3,7 @@ package oth.librafolio.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import oth.librafolio.model.User;
+import oth.librafolio.model.roles.User;
 
 import java.util.List;
 

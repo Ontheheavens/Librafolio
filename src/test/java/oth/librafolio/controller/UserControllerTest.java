@@ -11,8 +11,8 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 
 import oth.librafolio.dto.UserDTO;
-import oth.librafolio.model.Role;
-import oth.librafolio.model.User;
+import oth.librafolio.model.roles.Role;
+import oth.librafolio.model.roles.User;
 import oth.librafolio.service.UserService;
 
 import java.util.logging.Logger;
